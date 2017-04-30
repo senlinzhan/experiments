@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ movie_info.title }}
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div style="text-align: center;">
+        <h1>
+            {{ movie_info.title }}
+        </h1>
+        <br>
+        <img alt="" src="{{ url_for('static', filename=poster_path) }}" />
+    </div>
+    
+    <br>
+    {% for comment in movie_info.comments %}
+    <h3>
+    {{ comment.title }}
+    </h3> 
+    <p>作者：<strong>{{ comment.author }}</strong></p>
+    <br>
+    {% autoescape false %}
+    {{ comment.comment }}
+    {% endautoescape %}
+    
+    <br>
+    <br>
+    {% endfor %}
+
+</div>
+{% endblock %}
